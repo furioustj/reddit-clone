@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FlameIcon, HomeIcon, Minus, Plus, TrendingUpIcon } from "lucide-react";
+import { HomeIcon, Plus, Minus } from "lucide-react";
 
 import { SearchForm } from "@/components/search-form";
 import {
@@ -41,10 +41,8 @@ type SidebarData = {
 export async function AppSidebar({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
-  // TODO: get all subreddits from sanity
   const subreddits = await getSubreddits();
 
-  // This is sample data.
   const sidebarData: SidebarData = {
     navMain: [
       {
@@ -94,19 +92,6 @@ export async function AppSidebar({
                   Home
                 </Link>
               </SidebarMenuButton>
-
-              <SidebarMenuButton asChild className="p-5">
-                <Link href="/popular">
-                  <TrendingUpIcon className="w-4 h-4 mr-2" />
-                  Popular
-                </Link>
-              </SidebarMenuButton>
-              <SidebarMenuButton asChild className="p-5">
-                <Link href="/hot">
-                  <FlameIcon className="w-4 h-4 mr-2" />
-                  Hot/Controversial
-                </Link>
-              </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
@@ -122,7 +107,7 @@ export async function AppSidebar({
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton>
-                      {item.title}{" "}
+                      {item.title}
                       <Plus className="ml-auto group-data-[state=open]/collapsible:hidden" />
                       <Minus className="ml-auto group-data-[state=closed]/collapsible:hidden" />
                     </SidebarMenuButton>
